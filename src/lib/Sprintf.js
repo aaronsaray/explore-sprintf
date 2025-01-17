@@ -23,6 +23,7 @@ function sprintf(key) {
     return sprintf_format(sprintf_parse(key), arguments)
 }
 
+// eslint-disable-next-line
 function vsprintf(fmt, argv) {
     return sprintf.apply(null, [fmt].concat(argv || []))
 }

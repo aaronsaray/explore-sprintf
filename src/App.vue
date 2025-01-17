@@ -60,7 +60,7 @@
 <script setup>
 import { ref, watch } from 'vue';
 import WipMessage from './components/WipMessage.vue';
-import { getTokens, sprintf } from './Sprintf';
+import { getTokens, sprintf } from './lib/Sprintf';
 
 function example() {
   formatString.value = 'My string "%s" is here.';

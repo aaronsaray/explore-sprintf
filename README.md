@@ -2,28 +2,18 @@
 
 Explore sprintf() in the browser
 
-## Project Setup
+## Development
 
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
+### Coding 
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
 ### Run Unit Tests with [Vitest](https://vitest.dev/)
 
 ```sh
-npm run test:unit
+npm run test
 ```
 
 ### Lint with [ESLint](https://eslint.org/)
@@ -31,3 +21,11 @@ npm run test:unit
 ```sh
 npm run lint
 ```
+
+## Deploy
+
+```sh
+npm run build
+```
+
+Deploy the `/dist` folder.
