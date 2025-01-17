@@ -29,3 +29,5 @@ npm run build
 ```
 
 Deploy the `/dist` folder.
+
+GitHub actions are deploying to GitHub pages.
