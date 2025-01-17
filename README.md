@@ -2,8 +2,32 @@
 
 Explore sprintf() in the browser
 
-## Notes
+## Project Setup
 
-This is based in docs/index.html for GH pages
+```sh
+npm install
+```
 
-tailwind.config.js exists to just get the editor to autocomplete.
+### Compile and Hot-Reload for Development
+
+```sh
+npm run dev
+```
+
+### Compile and Minify for Production
+
+```sh
+npm run build
+```
+
+### Run Unit Tests with [Vitest](https://vitest.dev/)
+
+```sh
+npm run test:unit
+```
+
+### Lint with [ESLint](https://eslint.org/)
+
+```sh
+npm run lint
+```
