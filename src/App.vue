@@ -22,6 +22,7 @@
           <textarea 
             v-model="formatString"
             class="w-full bg-slate-800 focus:bg-slate-950 border border-slate-700 focus:outline-none p-2 placeholder:text-slate-500 text-gray-50" 
+            :class="{'border-rose-700': formatStringError }"
             placeholder="Enter your format string" 
             rows="1"
           ></textarea>
@@ -37,7 +38,7 @@
           <div v-for="(field, idx) in fields" v-bind:key="idx">
             <label>
               <span class="w-10 inline-block text-gray-400">{{ field.token }}</span>
-              <input v-model="field.value" class="bg-slate-800 focus:bg-slate-950 border border-slate-700 focus:outline-none p-2 placeholder:text-slate-500 text-gray-50" type="text">
+              <input v-model="fields[idx].value" class="bg-slate-800 focus:bg-slate-950 border border-slate-700 focus:outline-none p-2 placeholder:text-slate-500 text-gray-50" type="text">
             </label>
           </div>
         </fieldset>
@@ -48,7 +49,8 @@
           Formatted result
         </div>
         <div class="bg-slate-950 p-2 drop-shadow">
-          <span class="uppercase text-sm bg-slate-800 px-1 py-0.5 rounded-sm">None</span>
+          <span v-if="!formattedString" class="uppercase text-sm bg-slate-800 px-1 py-0.5 rounded-sm">None</span>
+          <span v-else :class="{'blur-sm': formatStringError }">{{ formattedString }}</span>
         </div>
       </div>
     </section>
@@ -58,24 +60,44 @@
 <script setup>
 import { ref, watch } from 'vue';
 import WipMessage from './components/WipMessage.vue';
-import { getTokens } from './Sprintf';
+import { getTokens, sprintf } from './Sprintf';
 
 function example() {
   formatString.value = 'My string "%s" is here.';
 }
 
-const formatString = ref('');
+function calculateFormattedString() {
+  try {
+    formattedString.value = sprintf(formatString.value, ...fields.value.map(f => f.value));
+    formatStringError.value = false;
+  } catch {
+    formatStringError.value = true;
+  }
+}
 
+const formatString = ref('');
+const formattedString = ref('');
 const fields = ref([]);
+const formatStringError = ref(false);
 
 watch(formatString, newFormatString => {
   fields.value = [];
+
   getTokens(newFormatString).forEach(token => {
     if (token.token && token.token !== '%%') {
       const value = token.token === '%s' ? 'Example' : '0';
       fields.value.push({value, ...token});
     }
   });
+
+  calculateFormattedString();
 });
 
+watch(
+  () => fields,
+  () => calculateFormattedString(),
+  {
+    deep: true
+  }  
+);
 </script>
