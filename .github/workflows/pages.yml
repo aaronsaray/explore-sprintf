@@ -1,0 +1,61 @@
+name: Pages
+
+on: 
+  push:
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    name: Build, Lint and Test
+
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Code checkout
+        uses: actions/checkout@v4
+
+      - name: Cache npm dependencies
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: npm-${{ hashFiles('package-lock.json') }}
+
+      - name: Set up Volta to manage Node/Npm versions
+        uses: volta-cli/action@v4
+
+      - name: Install JS dependencies
+        run: npm install
+
+      - name: Build JS dependencies
+        run: npm run build
+
+      - name: Run JS ESLint
+        run: npm run lint
+
+      - name: Run Tests
+        run: npm run test
+
+      - name: Upload static files as artifact
+        id: upload
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/
+
+  deploy:
+    needs: build-and-test
+
+    permissions:
+      pages: write
+      id-token: write   
+
+    name: Deploy GitHub pages
+
+    runs-on: ubuntu-24.04
+
+    environment:
+      name: github-pages
+      url: ${{ steps.upload.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
