@@ -32,19 +32,15 @@
           </div>
         </fieldset>
 
-        <template>
-          <fieldset class="space-y-2">
-            <legend class="text-gray-400 font-medium">Substitutions</legend>
-            <template>
-              <div class="mb-4">
-                <label>
-                  <span class="w-10 inline-block text-gray-400"></span>
-                  <input class="bg-slate-800 focus:bg-slate-950 border border-slate-700 focus:outline-none p-2 placeholder:text-slate-500 text-gray-50" type="text">
-                </label>
-              </div>
-            </template>
-          </fieldset>
-        </template>
+        <fieldset v-if="fields.length" class="space-y-2">
+          <legend class="text-gray-400 font-medium">Substitutions</legend>
+          <div v-for="(field, idx) in fields" v-bind:key="idx">
+            <label>
+              <span class="w-10 inline-block text-gray-400">{{ field.token }}</span>
+              <input v-model="field.value" class="bg-slate-800 focus:bg-slate-950 border border-slate-700 focus:outline-none p-2 placeholder:text-slate-500 text-gray-50" type="text">
+            </label>
+          </div>
+        </fieldset>
       </div>
 
       <div>
@@ -60,14 +56,26 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-
+import { ref, watch } from 'vue';
 import WipMessage from './components/WipMessage.vue';
-
-const formatString = ref('');
+import { getTokens } from './Sprintf';
 
 function example() {
   formatString.value = 'My string "%s" is here.';
 }
+
+const formatString = ref('');
+
+const fields = ref([]);
+
+watch(formatString, newFormatString => {
+  fields.value = [];
+  getTokens(newFormatString).forEach(token => {
+    if (token.token && token.token !== '%%') {
+      const value = token.token === '%s' ? 'Example' : '0';
+      fields.value.push({value, ...token});
+    }
+  });
+});
 
 </script>
