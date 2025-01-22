@@ -1,7 +1,7 @@
 <template>
   <aside class="absolute top-0 right-0 text-sm w-64">
     <div class="bg-amber-700 text-black p-1 text-sm text-center">
-      This is WIP. 
+      This is WIP.
       <a @click.prevent="toggle" href="#" class="underline">
         <span v-if="!showing">Learn more</span>
         <span v-if="showing">Close</span>
@@ -11,8 +11,7 @@
       <p class="text-center font-semibold">Work in Progress</p>
       <p>The following are broken, missing or in progress:</p>
       <ul class="list-disc list-inside">
-        <li>Any support besides just plain <code>%s</code></li>
-        <li>When you change the format string, all fields reset.</li>
+        <li>Any support besides just plain <code>%s</code> and <code>%d</code></li>
       </ul>
       <p>
         Probably way more things. This is just for fun right now.
