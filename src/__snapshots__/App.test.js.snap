@@ -7,7 +7,7 @@ exports[`initial snapshot 1`] = `
     </a></div>
   <!--v-if-->
 </aside>
-<main class="max-w-5xl mx-auto px-3 pt-10">
+<main class="grow w-full max-w-5xl mx-auto px-3 pt-10 mb-32">
   <section class="text-center mb-14">
     <h1 class="antialiased tracking-wide text-5xl font-thin text-center text-gray-100 mb-8"> Exploring <span class="border-b-2 border-orange-700 pb-1">sprintf</span></h1>
     <p> Learn the power and potential of <code class="text-gray-300">sprintf()</code> in the browser! </p>
@@ -22,8 +22,12 @@ exports[`initial snapshot 1`] = `
     </div>
     <div>
       <div class="text-gray-400 font-medium mb-2"> Formatted result </div>
-      <div class="bg-slate-950 p-2 drop-shadow"><span class="uppercase text-sm bg-slate-800 px-1 py-0.5 rounded-sm">None</span></div>
+      <div class="bg-slate-950 p-2 drop-shadow overflow-x-auto"><span class="uppercase text-sm bg-slate-800 px-1 py-0.5 rounded-sm">None</span></div>
     </div>
   </section>
-</main>"
+</main>
+<article class="max-w-3xl mx-auto px-4 pb-10 text-xl">
+  <h3 class="text-center mb-4 text-2xl">What is sprintf?</h3>
+  <p><code class="text-lg">sprintf()</code> takes a format string and returns it formatted based on the template parameters and instructions you've provided. You can learn more at <a href="https://www.php.net/sprintf" class="transition-all underline underline-offset-2 hover:text-gray-400">php.net/sprintf</a>. </p>
+</article>"
 `;

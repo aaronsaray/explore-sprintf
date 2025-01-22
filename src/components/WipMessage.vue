@@ -11,7 +11,8 @@
       <p class="text-center font-semibold">Work in Progress</p>
       <p>The following are broken, missing or in progress:</p>
       <ul class="list-disc list-inside">
-        <li>Any support besides just plain <code>%s</code> and <code>%d</code></li>
+        <li>Named parameters</li>
+        <li>Different order of parameters</li>
       </ul>
       <p>
         Probably way more things. This is just for fun right now.
