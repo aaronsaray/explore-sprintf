@@ -1,6 +1,8 @@
 # explore-sprintf
 
-Explore sprintf() in the browser
+Explore sprintf() in the browser.
+
+This is just left as example code now. This is no longer deployed. Read more at [AaronSaray.com/blog](https://aaronsaray.com/blog).
 
 ## Development
 

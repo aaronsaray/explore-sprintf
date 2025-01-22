@@ -13,6 +13,7 @@
       <ul class="list-disc list-inside">
         <li>Named parameters</li>
         <li>Different order of parameters</li>
+        <li>Changing a format in the middle of the string may misalign the labels.</li>
       </ul>
       <p>
         Probably way more things. This is just for fun right now.

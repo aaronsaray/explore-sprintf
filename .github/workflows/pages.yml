@@ -57,5 +57,9 @@ jobs:
       url: ${{ steps.upload.outputs.page_url }}
 
     steps:
-      - name: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages (temporarily disabled)
+        if: false 
         uses: actions/deploy-pages@v4
+
+      - name: Complete message
+        run: echo "::notice::This would have deployed to GitHub pages."
