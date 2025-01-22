@@ -245,7 +245,7 @@ function getTokens(formatString) {
                 throw new Error('[sprintf] mixing positional and named placeholders is not (yet) supported')
             }
 
-            tokens.push({                    
+            tokens.push({
                 token: match[0],
                 type: match[8]
             });

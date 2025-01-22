@@ -64,19 +64,37 @@ import { getTokens, sprintf } from './lib/Sprintf';
 
 function example() {
   formatString.value = 'My string "%s" is here.';
+  fields.value = [];
 }
 
 function getDefaultValueFor(token) {
-  switch(token) {
-    case '%s':
-      return 'Example';
+  const values = {
+    '%b': 1,
+    '%c': 65,
+    '%d': 2,
+    '%e': 3123,
+    '%E': 4123,
+    '%f': 52.34,
+    '%F': 62.34,
+    '%g': 7.12,
+    '%G': 8.12,
+    '%h': 9.12,
+    '%H': 10.12,
+    '%o': 321,
+    '%s': 'Example',
+    '%u': 22,
+    '%x': 31,
+    '%X': 42,
 
-    case '%d':
-      return 0;
+    '%2$s': 'Example',
+    '%1$d': 4,
+  };
 
-    default:
-      throw Error('Invalid token type: ' + token);
+  if (token in values) {
+    return values[token];
   }
+
+  throw Error('Invalid token type: "' + token + '"');
 }
 
 function refreshResultString() {
